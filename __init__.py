@@ -2,5 +2,4 @@
 
 import bolson
 import invoice
-import voucher
-import bank_statement
+import payment

@@ -9,4 +9,3 @@ class account_invoice(osv.osv):
     _columns = {
         'bolson_id': fields.many2one('bolson.bolson', 'Liquidacion'),
     }
-account_invoice()
