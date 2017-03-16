@@ -23,10 +23,8 @@
                                 <field name="company_id"/>
                             </group>
                         </group>
-                        <group>
-                            <field name="facturas" readonly="True"/>
-                            <field name="cheques" readonly="True"/>
-                        </group>
+                        <field name="facturas" readonly="True"/>
+                        <field name="cheques" readonly="True"/>
                         <group>
                             <group>
                                 <field name="cuenta_desajuste"/>

@@ -16,9 +16,9 @@
     'depends' : [ 'l10n_gt_extra' ],
     'demo' : [ ],
     'data' : [
-        'bolson_view.xml',
-        'invoice_view.xml',
-        'payment_view.xml',
+        'views/bolson_view.xml',
+        'views/invoice_view.xml',
+        'views/payment_view.xml',
     ],
     'installable': True,
     'certificate': '',
