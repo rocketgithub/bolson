@@ -21,7 +21,7 @@ class BolsonBolson(models.Model):
                             total += l.credit - l.debit
                             lineas.append(l)
                         else:
-                            raise osv.except_osv('Error!', 'La factura %s ya esta conciliada' % (f.number))
+                            raise UserError('La factura %s ya esta conciliada' % (f.number))
 
             for c in rec.cheques:
                 for l in c.move_line_ids:
@@ -30,10 +30,10 @@ class BolsonBolson(models.Model):
                             total -= l.debit - l.credit
                             lineas.append(l)
                         else:
-                            raise osv.except_osv('Error!', 'El cheque %s ya esta conciliado' % (c.number))
+                            raise UserError('El cheque %s ya esta conciliado' % (c.number))
 
             if round(total) != 0 and not rec.cuenta_desajuste:
-                raise osv.except_osv('Error!', 'El total de las facturas no es igual al total de los cheques y los extractos')
+                raise UserError('El total de las facturas no es igual al total de los cheques y los extractos')
 
             pares = []
             nuevas_lineas = []

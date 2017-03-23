@@ -9,8 +9,8 @@
             <field name="arch" type="xml">
                 <form string="Bolson" version="7.0">
                     <header>
-                        <button name="conciliar" string="Conciliar" icon="gtk-execute" type="object" />
-                        <button name="cancelar" string="Cancelar" icon="gtk-execute" type="object" />
+                        <button name="conciliar" string="Conciliar" type="object" />
+                        <button name="cancelar" string="Cancelar" type="object" />
                     </header>
                     <sheet>
                         <group>
