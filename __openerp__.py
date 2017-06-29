@@ -1,11 +1,5 @@
 # -*- encoding: utf-8 -*-
 
-#
-# Este es el modulo de liquidaciones
-#
-# Status 1.0 - tested on Odoo 9.0
-#
-
 {
     'name' : 'Bolson',
     'version' : '1.0',

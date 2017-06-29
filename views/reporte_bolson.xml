@@ -31,8 +31,13 @@
                                 <tr>
                                     <th><strong>No. Interno</strong></th>
                                     <th><strong>No. Proveedor</strong></th>
+                                    <th><strong>Fecha</strong></th>
+                                    <th><strong>Proveedor</strong></th>
+                                    <th><strong>Concepto</strong></th>
+                                    <th><strong>Productos</strong></th>
+                                    <th><strong>Cuentas Analíticas</strong></th>
                                     <th><strong>Cuenta</strong></th>
-                                    <th class="text-right"><strong>Valor</strong></th>
+                                    <th><strong>Valor</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,6 +50,21 @@
                                         <span t-field="f.reference"/>
                                     </td>
                                     <td>
+                                        <span t-field="f.date_invoice"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="f.partner_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="', '.join([x.name for x in f.invoice_line_ids])"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="', '.join([x.product_id.name for x in f.invoice_line_ids if x.product_id])"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="', '.join([x.account_analytic_id.name for x in f.invoice_line_ids if x.account_analytic_id])"/>
+                                    </td>
+                                    <td>
                                         <span t-field="f.account_id"/>
                                     </td>
                                     <td class="text-right">
@@ -54,6 +74,12 @@
                                 <tr>
                                     <td>
                                         Total
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
                                     </td>
                                     <td>
                                     </td>
@@ -73,16 +99,20 @@
                             <thead>
                                 <tr>
                                     <th><strong>No. Interno</strong></th>
+                                    <th><strong>Fecha</strong></th>
                                     <th><strong>Referencia</strong></th>
                                     <th><strong>Cuenta</strong></th>
-                                    <th class="text-right"><strong>Valor</strong></th>
+                                    <th><strong>Valor</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr t-foreach="o.cheques" t-as="c">
                                     <t t-set="total_cheque" t-value="total_cheque + c.amount"/>
                                     <td>
-                                        <span t-field="c.name"/>-<t t-esc="foo"/>
+                                        <span t-field="c.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="c.payment_date"/>
                                     </td>
                                     <td>
                                         <span t-field="c.communication"/>
@@ -97,6 +127,8 @@
                                 <tr>
                                     <td>
                                         Total
+                                    </td>
+                                    <td>
                                     </td>
                                     <td>
                                     </td>
