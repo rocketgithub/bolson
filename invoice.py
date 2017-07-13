@@ -9,4 +9,14 @@ class account_invoice(osv.osv):
     _columns = {
         'bolson_id': fields.many2one('bolson.bolson', 'Liquidacion'),
     }
-account_invoice()
+
+    def onchange_bolson(self, cr, uid, ids, bolson_id, context=None):
+        val = {}
+        if not bolson_id:
+            return {'value': val}
+
+        bolson = self.pool.get('bolson.bolson').browse(cr, uid, bolson_id, context=context)
+        if bolson.diario.type == 'purchase':
+            val = {'journal_id': bolson.diario.id}
+            
+        return {'value': val}

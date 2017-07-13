@@ -9,7 +9,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="tipo_gasto" position="after">
-                    <field name="bolson_id"/>
+                    <field name="bolson_id" domain="[('asiento','=',False)]" on_change="onchange_bolson(bolson_id)"/>
                 </field>
             </field>
         </record>

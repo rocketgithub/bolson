@@ -9,10 +9,10 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="company_id" position="before">
-                    <field name="bolson_id"/>
+                    <field name="bolson_id" domain="[('asiento','=',False)]"/>
                 </field>
             </field>
         </record>
-        
+
     </data>
 </openerp>

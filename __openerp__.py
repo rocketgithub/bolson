@@ -15,7 +15,14 @@
     'website': 'http://solucionesprisma.com/',
     'depends' : [ 'l10n_gt_extra' ],
     'demo' : [ ],
-    'data' : [ 'bolson_view.xml', 'invoice_view.xml', 'voucher_view.xml', 'bank_statement_view.xml' ],
+    'data' : [
+        'bolson_view.xml',
+        'invoice_view.xml',
+        'voucher_view.xml',
+        'bank_statement_view.xml',
+        'views/report.xml',
+        'views/reporte_bolson.xml',
+    ],
     'installable': True,
     'certificate': '',
 }

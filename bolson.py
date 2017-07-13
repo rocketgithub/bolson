@@ -13,11 +13,13 @@ class bolson_bolson(osv.osv):
         for obj in self.browse(cr, uid, ids, context):
 
             lineas = []
+            cuentas = set()
 
             total = 0
             for f in obj.facturas:
                 for l in f.move_id.line_id:
                     if l.account_id.type == 'payable':
+                        cuentas.add(l.account_id.id)
                         if not l.reconcile_id and not l.reconcile_partial_id:
                             total += l.credit - l.debit
                             lineas.append(l)
@@ -27,6 +29,7 @@ class bolson_bolson(osv.osv):
             for c in obj.cheques:
                 for l in c.move_id.line_id:
                     if l.account_id.type == 'payable':
+                        cuentas.add(l.account_id.id)
                         if not l.reconcile_id and not l.reconcile_partial_id:
                             total -= l.debit - l.credit
                             lineas.append(l)
@@ -36,11 +39,15 @@ class bolson_bolson(osv.osv):
             for e in obj.extractos:
                 for l in e.move_line_ids:
                     if l.account_id.type == 'payable':
+                        cuentas.add(l.account_id.id)
                         if not l.reconcile_id and not l.reconcile_partial_id:
                             total += l.credit - l.debit
                             lineas.append(l)
                         else:
                             raise osv.except_osv('Error!', 'El extracto %s ya esta conciliado' % (e.name))
+
+            if len(cuentas) > 1:
+                raise osv.except_osv('Error!', 'No todos los documentos tienen la misma cuenta por pagar')
 
             if round(total) != 0 and not obj.cuenta_desajuste:
                 raise osv.except_osv('Error!', 'El total de las facturas no es igual al total de los cheques y los extractos')
@@ -75,7 +82,7 @@ class bolson_bolson(osv.osv):
                     'name': 'Diferencial en '+obj.descripcion,
                     'debit': -1*total if total < 0 else 0,
                     'credit': total if total > 0 else 0,
-                    'account_id': obj.facturas[0].account_id.id,
+                    'account_id': obj.cuenta_desajuste.account_id.id,
                 })
 
             for p in pares:
