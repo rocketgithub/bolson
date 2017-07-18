@@ -76,13 +76,13 @@ class bolson_bolson(osv.osv):
                 pares.append([linea.id, nueva_linea_id])
 
             logging.warn(total)
-            if total != 0:
+            if round(total) != 0:
                 linea_diferencial_id = self.pool.get('account.move.line').create(cr, uid, {
                     'move_id': m_id,
                     'name': 'Diferencial en '+obj.descripcion,
                     'debit': -1*total if total < 0 else 0,
                     'credit': total if total > 0 else 0,
-                    'account_id': obj.cuenta_desajuste.account_id.id,
+                    'account_id': obj.cuenta_desajuste.id,
                 })
 
             for p in pares:
