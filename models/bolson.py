@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-from openerp import models, fields, api, _
-from openerp.exceptions import UserError, ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools.float_utils import float_round as round
+import logging
 
 class BolsonBolson(models.Model):
     _name = 'bolson.bolson'
@@ -32,8 +34,8 @@ class BolsonBolson(models.Model):
                         else:
                             raise UserError('El cheque %s ya esta conciliado' % (c.number))
 
-            if round(total) != 0 and not rec.cuenta_desajuste:
-                raise UserError('El total de las facturas no es igual al total de los cheques y los extractos')
+            if round(total, 2) != 0 and not rec.cuenta_desajuste.id:
+                raise UserError('El total de las facturas no es igual al total de los cheques (diferencia de {:f}) y no hay cuenta de desajuste.'.format(round(total, 2)))
 
             pares = []
             nuevas_lineas = []
@@ -48,7 +50,7 @@ class BolsonBolson(models.Model):
                     'date_maturity': rec.fecha,
                 }))
 
-            if total != 0:
+            if round(total, 2) != 0:
                 nuevas_lineas.append((0, 0, {
                     'name': 'Diferencial en ' + rec.name,
                     'debit': -1 * total if total < 0 else 0,
