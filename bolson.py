@@ -49,7 +49,9 @@ class bolson_bolson(osv.osv):
             if len(cuentas) > 1:
                 raise osv.except_osv('Error!', 'No todos los documentos tienen la misma cuenta por pagar')
 
-            if round(total) != 0 and not obj.cuenta_desajuste:
+            diferencia = self.pool.get('res.currency').round(cr, uid, obj.company_id.currency_id, total)
+
+            if round(diferencia) != 0 and not obj.cuenta_desajuste:
                 raise osv.except_osv('Error!', 'El total de las facturas no es igual al total de los cheques y los extractos')
 
             ctx = context.copy()
@@ -75,13 +77,12 @@ class bolson_bolson(osv.osv):
                 })
                 pares.append([linea.id, nueva_linea_id])
 
-            logging.warn(total)
-            if round(total) != 0:
+            if diferencia != 0:
                 linea_diferencial_id = self.pool.get('account.move.line').create(cr, uid, {
                     'move_id': m_id,
                     'name': 'Diferencial en '+obj.descripcion,
-                    'debit': -1*total if total < 0 else 0,
-                    'credit': total if total > 0 else 0,
+                    'debit': -1*diferencia if diferencia < 0 else 0,
+                    'credit': diferencia if diferencia > 0 else 0,
                     'account_id': obj.cuenta_desajuste.id,
                 })
 
