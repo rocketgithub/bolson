@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
 
-import bolson
-import invoice
-import payment
+from . import bolson
+from . import invoice
+from . import payment
