@@ -14,6 +14,7 @@
         'views/invoice_view.xml',
         'views/payment_view.xml',
         'views/reporte_bolson.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True,
     'certificate': '',
