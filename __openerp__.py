@@ -1,11 +1,5 @@
 # -*- encoding: utf-8 -*-
 
-#
-# Este es el modulo de liquidaciones
-#
-# Status 1.0 - tested on Odoo 9.0
-#
-
 {
     'name' : 'Bolson',
     'version' : '1.0',
@@ -13,13 +7,14 @@
     'description': """Manejo de cajas chicas y liquidaciones""",
     'author': 'Rodrigo Fernandez',
     'website': 'http://solucionesprisma.com/',
-    'depends' : [ 'l10n_gt_extra' ],
+    'depends' : [ 'account' ],
     'data' : [
         'views/report.xml',
         'views/bolson_view.xml',
         'views/invoice_view.xml',
         'views/payment_view.xml',
         'views/reporte_bolson.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True,
     'certificate': '',
