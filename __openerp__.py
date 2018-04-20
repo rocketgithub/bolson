@@ -15,6 +15,7 @@
         'views/payment_view.xml',
         'views/reporte_bolson.xml',
         'security/ir.model.access.csv',
+        'security/bolson_security.xml',
     ],
     'installable': True,
     'certificate': '',
