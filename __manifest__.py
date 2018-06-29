@@ -16,6 +16,7 @@
         'views/reporte_bolson.xml',
         'security/ir.model.access.csv',
         'security/bolson_security.xml',
+        'wizard/asignar_view.xml',
     ],
     'installable': True,
     'certificate': '',
