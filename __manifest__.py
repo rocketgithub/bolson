@@ -7,7 +7,7 @@
     'description': """Manejo de cajas chicas y liquidaciones""",
     'author': 'Rodrigo Fernandez',
     'website': 'http://solucionesprisma.com/',
-    'depends' : [ 'l10n_gt_extra' ],
+    'depends' : [ 'account' ],
     'data' : [
         'views/report.xml',
         'views/bolson_view.xml',
