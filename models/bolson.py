@@ -27,24 +27,26 @@ class BolsonBolson(models.Model):
 
             total = 0
             for f in rec.facturas:
-                logging.warn(f.name)
+                logging.warn(f.number)
+                logging.warn(f.amount_total)
                 for l in f.move_id.line_ids:
                     if l.account_id.reconcile:
                         if not l.reconciled:
                             total += l.credit - l.debit
-                            logging.warn(total)
                             lineas.append(l)
+                            logging.warn(l.credit - l.debit)
                         else:
                             raise UserError('La factura %s ya esta conciliada' % (f.number))
 
             for c in rec.cheques:
                 logging.warn(c.name)
+                logging.warn(c.amount)
                 for l in c.move_line_ids:
                     if l.account_id.reconcile:
                         if not l.reconciled :
                             total -= l.debit - l.credit
-                            logging.warn(total)
                             lineas.append(l)
+                            logging.warn(l.debit - l.credit)
                         else:
                             raise UserError('El cheque %s ya esta conciliado' % (c.name))
 
