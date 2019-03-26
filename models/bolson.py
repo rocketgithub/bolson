@@ -35,6 +35,7 @@ class BolsonBolson(models.Model):
                         else:
                             raise UserError('La factura %s ya esta conciliada' % (f.number))
 
+            logging.warn(total)
             for c in rec.cheques:
                 for l in c.move_line_ids:
                     if l.account_id.reconcile:
@@ -44,6 +45,7 @@ class BolsonBolson(models.Model):
                         else:
                             raise UserError('El cheque %s ya esta conciliado' % (c.name))
 
+            logging.warn(total)
             if round(total) != 0 and not rec.cuenta_desajuste:
                 raise UserError('El total de las facturas no es igual al total de los cheques y los extractos')
 
