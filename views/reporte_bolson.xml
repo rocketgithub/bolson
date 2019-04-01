@@ -156,6 +156,25 @@
                             </tbody>
                         </table>
                         <div class="oe_structure"/>
+                        <table class="mt32 table table-condensed" style="border-spacing: 1em 1em">
+                            <tbody>
+                                <tr>
+                                    <td style="border-top: 1px solid black">
+                                        Realizó
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td style="border-top: 1px solid black">
+                                        Autorizó
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td style="border-top: 1px solid black">
+                                        Operó
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </t>
             </t>
