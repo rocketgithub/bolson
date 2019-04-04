@@ -42,7 +42,7 @@ class BolsonBolson(models.Model):
                             total -= l.debit - l.credit
                             lineas.append(l)
                         else:
-                            raise UserError('El cheque %s ya esta conciliado' % (c.number))
+                            raise UserError('El cheque %s ya esta conciliado' % (c.name))
 
             if round(total, 2) != 0 and not rec.cuenta_desajuste.id:
                 raise UserError('El total de las facturas no es igual al total de los cheques (diferencia de {:f}) y no hay cuenta de desajuste.'.format(round(total, 2)))
