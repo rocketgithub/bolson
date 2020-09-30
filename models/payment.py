@@ -6,4 +6,4 @@ from openerp.exceptions import UserError, ValidationError
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
 
-    bolson_id = fields.Many2one("bolson.bolson", string="Liquidacion", readonly=False, states={'reconciled': [('readonly', True)]}, ondelete='restrict')
+    bolson_id = fields.Many2one("bolson.bolson", string="Liquidacion", readonly=True, ondelete='restrict')

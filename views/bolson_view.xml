@@ -8,10 +8,6 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Bolson">
-                    <header>
-                        <button name="conciliar" string="Conciliar" type="object" />
-                        <button name="cancelar" string="Cancelar" type="object" />
-                    </header>
                     <sheet>
                         <group>
                             <group>
