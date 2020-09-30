@@ -12,7 +12,7 @@ class BolsonBolson(models.Model):
 
     fecha = fields.Date(string="Fecha", required=True)
     name = fields.Char(string="Descripcion", required=True)
-    facturas = fields.One2many("account.invoice", "bolson_id", string="Facturas")
+    facturas = fields.One2many("account.move", "bolson_id", string="Facturas")
     cheques = fields.One2many("account.payment", "bolson_id", string="Cheques")
     company_id = fields.Many2one("res.company", string="Company", required=True, default=lambda self: self.env.user.company_id.id)
     diario = fields.Many2one("account.journal", string="Diario", required=True)

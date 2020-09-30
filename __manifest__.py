@@ -4,7 +4,7 @@
     'name' : 'Bolson',
     'version' : '2.0',
     'category': 'Custom',
-    'description': """Manejo de cajas chicas y liquidaciones ( ya no usar )""",
+    'description': """Manejo de cajas chicas y liquidaciones ( obsoleto, ya no usar )""",
     'author': 'aquíH',
     'website': 'http://www.aquih.com/',
     'depends' : [ 'account' ],
