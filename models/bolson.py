@@ -71,7 +71,8 @@ class BolsonBolson(models.Model):
                     'name': 'Diferencial en ' + rec.name,
                     'debit': -1 * total if total < 0 else 0,
                     'credit': total if total > 0 else 0,
-                    'account_id': rec.facturas[0].account_id.id,
+                    #'account_id': rec.facturas[0].account_id.id,
+                    'account_id': rec.cuenta_desajuste,
                     'date_maturity': rec.fecha,
                 }))
 
